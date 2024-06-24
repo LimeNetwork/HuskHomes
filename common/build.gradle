@@ -14,6 +14,8 @@ dependencies {
         exclude module: 'slf4j-api'
     }
 
+    compileOnly(fileTree("../libs"))
+
     compileOnly 'net.kyori:adventure-api:4.17.0'
     compileOnly "redis.clients:jedis:${jedis_version}"
     compileOnly "org.xerial:sqlite-jdbc:${sqlite_driver_version}"
@@ -29,10 +31,6 @@ dependencies {
     compileOnly 'us.dynmap:DynmapCoreAPI:3.4'
     compileOnly 'maven.modrinth:pl3xmap:1.20.4-489'
     compileOnly 'org.projectlombok:lombok:1.18.32'
-
-    testImplementation 'com.github.plan-player-analytics:Plan:5.5.2391'
-    testImplementation 'com.github.yuriy-g:simple-java-plot:5c502c2e98'
-    testImplementation 'com.google.guava:guava:33.2.1-jre'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
 }

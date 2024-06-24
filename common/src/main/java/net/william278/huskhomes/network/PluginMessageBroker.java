@@ -25,6 +25,7 @@ import com.google.common.io.ByteStreams;
 import net.william278.huskhomes.HuskHomes;
 import net.william278.huskhomes.user.OnlineUser;
 import org.jetbrains.annotations.NotNull;
+import tr.com.efekurban.queue.QueueAPI;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -109,12 +110,7 @@ public class PluginMessageBroker extends Broker {
     @Override
     public void changeServer(@NotNull OnlineUser user, @NotNull String server) {
         user.dismount().thenRun(() -> {
-            final ByteArrayDataOutput outputStream = ByteStreams.newDataOutput();
-
-            outputStream.writeUTF("Connect");
-            outputStream.writeUTF(server);
-
-            user.sendPluginMessage(outputStream.toByteArray());
+            QueueAPI.addQueue(user.getUsername(), server);
         });
     }
 
